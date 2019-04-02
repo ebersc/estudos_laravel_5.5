@@ -20,7 +20,7 @@
             <form method="POST" action="{{ route('deposit.store') }}">
                 {!! csrf_field() !!} {{-- Cria um input com o token de segurança do laravel, pode se usar csrf_token() porem o mesmo necessita que o input seja criado manualmente --}}
                 <div class="form-group">
-                    <input type="text" placeholder="Valor Recarga" class="form-control">
+                    <input type="text" placeholder="Valor Recarga" class="form-control" name="value">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Recarregar</button>

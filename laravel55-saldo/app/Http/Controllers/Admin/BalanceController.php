@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Balance;
 
 class BalanceController extends Controller
 {
@@ -23,6 +24,11 @@ class BalanceController extends Controller
 
     public function depositStore(Request $request)
     {
-        dd($request->all());
+        //  dd($request->all()); Pega todos os valores enviados, equivalente ao $this->input->post() do codeIgniter
+        //    dd($request->value);
+        // $balance->deposit($request->value);
+
+        $balance = auth()->user()->balance()->firstOrCreate([]);
+        $balance->deposit($request->value);
     }
 }
