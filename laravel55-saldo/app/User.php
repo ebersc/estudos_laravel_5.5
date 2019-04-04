@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Balance;
+use App\Models\Historic;
 
 class User extends Authenticatable
 {
@@ -32,6 +33,19 @@ class User extends Authenticatable
     public function balance()
     {
         return $this->hasOne(Balance::class);
+    }
+
+    public function historics()
+    {
+        return $this->hasMany(Historic::class);
+    }
+
+    public function getSender($sender)
+    {
+        return $this->where('name', 'LIKE', "%$sender%")
+                    ->orWhere('email', $sender)
+                    ->get()
+                    ->first();
     }
 
     /**
