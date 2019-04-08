@@ -22,6 +22,7 @@
            @include('admin.includes.alerts')
 
             <p><strong>Recebedor: </strong>{{ $sender->name }}</p>
+            <p><strong>Seu saldo atual: R$ </strong>{{ number_format($balance->amount, 2, '.', '') }}</p>
 
             <form method="POST" action="{{ route('transfer.store') }}">
                 {!! csrf_field() !!} {{-- Cria um input com o token de segurança do laravel, pode se usar csrf_token() porem o mesmo necessita que o input seja criado manualmente --}}
@@ -29,7 +30,7 @@
                 <input type="hidden" name="sender_id" value="{{ $sender->id }}">
 
                 <div class="form-group">
-                    <input type="text" placeholder="Valor:" class="form-control" name="balance">
+                    <input type="text" placeholder="Valor:" class="form-control" name="value">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Transferir</button>
